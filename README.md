@@ -108,7 +108,7 @@ Crear un archivo en src/main/resources/ llamada : env.properties y agrega las si
 
 ![](assets/img12.jpg)
 
-## Opción adicionales a lo solicitado en el Cchallenge
+## Opción adicionales a lo solicitado en el Challenge
 
 ### 6 - Top 10 libros con mas descargas
 #### - Respuesta obtenida
