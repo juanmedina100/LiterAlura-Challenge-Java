@@ -11,4 +11,8 @@ import java.util.Optional;
 public interface LibrosRerpositorio extends JpaRepository<Libros,Long> {
 
     List<Libros> findByLanguages(String languages);
+
+    List<Libros> findAllByOrderByDownloadcountDesc();
+
+    List<Libros> findAllByOrderByDownloadcountAsc();
 }

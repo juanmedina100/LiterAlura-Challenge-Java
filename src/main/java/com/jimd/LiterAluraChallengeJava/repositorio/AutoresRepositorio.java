@@ -15,4 +15,8 @@ public interface AutoresRepositorio extends JpaRepository<Autores,Long> {
 
     List<Autores> findByBirthyearLessThanEqualAndDeathyearGreaterThanEqual(int year, int death);
 
+    //Con mas años
+    List<Autores> findAllByOrderByAgeDesc();
+    //Con menos años
+    List<Autores> findAllByOrderByAgeAsc();
 }

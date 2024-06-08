@@ -19,18 +19,27 @@ public class Autores {
     private int deathyear;
     @OneToMany(mappedBy = "authors",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Libros> libros;
+    @Column(name = "age")
+    private int age;
 
     public Autores(AuthorModel authorModel){
         this.name = authorModel.name();
         this.birthyear = authorModel.birth_year();
         this.deathyear = authorModel.death_year();
-
+        this.age = authorModel.death_year() - authorModel.birth_year();
     }
 
     public Autores(){
 
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public List<Libros> getLibros() {
         return libros;

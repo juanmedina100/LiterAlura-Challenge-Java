@@ -1,8 +1,6 @@
 package com.jimd.LiterAluraChallengeJava;
 
-import com.jimd.LiterAluraChallengeJava.model.AuthorModel;
-import com.jimd.LiterAluraChallengeJava.model.BookModel;
-import com.jimd.LiterAluraChallengeJava.model.ResultModel;
+import com.jimd.LiterAluraChallengeJava.model.*;
 import com.jimd.LiterAluraChallengeJava.repositorio.AutoresRepositorio;
 import com.jimd.LiterAluraChallengeJava.repositorio.LibrosRerpositorio;
 import com.jimd.LiterAluraChallengeJava.service.ConsumirAPI;
@@ -10,10 +8,8 @@ import com.jimd.LiterAluraChallengeJava.service.ConvierteDatos;
 import com.jimd.LiterAluraChallengeJava.tablas.Autores;
 import com.jimd.LiterAluraChallengeJava.tablas.Libros;
 
-import java.awt.print.Book;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import javax.swing.text.html.Option;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Principal {
@@ -45,6 +41,10 @@ public class Principal {
             System.out.println("3 - Listar autores registrados");
             System.out.println("4 - Listar autores vivos en determinado año");
             System.out.println("5 - Listar libros por idioma");
+            System.out.println("6 - Top 10 libros con mas descargas");
+            System.out.println("7 - Top 10 libros con menos descargas");
+            System.out.println("8 - Top 10 Autores con mas años");
+            System.out.println("9 - Top 10 Autores con menos años");
             System.out.println("0 - Salir");
             System.out.println("*********************************");
 
@@ -64,20 +64,28 @@ public class Principal {
                     buscarWeb();
                     break;
                 case 2:
-                    System.out.println("Presionaste 2");
                     listarLibros();
                     break;
                 case 3:
-                    System.out.println("Presionaste 3");
                     listarAutores();
                     break;
                 case 4:
-                    System.out.println("Presionaste 4");
                     autoresVivosEnDeterminadoAnio();
                     break;
                 case 5:
-                    System.out.println("Presionaste 5");
                     librosPorIdioma();
+                    break;
+                case 6:
+                    topDiezMasDescargados();
+                    break;
+                case 7:
+                    topDiezMenosDescargados();
+                    break;
+                case 8:
+                    topDiezAutoresConMasAnios();
+                    break;
+                case 9:
+                    topDiezAutoresConMenosAnios();
                     break;
             }
         }
@@ -121,13 +129,22 @@ public class Principal {
             System.out.println("Error: No es posible guardar la información.");
         }
     }
+    private String llamarIdioma(String codigo){
+        var json = consumirAPI.obtenerDatos(URL_LENGUAGE);
+        var datos = convierteDatos.obtenerDatos(json, Idiomas.class);
+        datos = convierteDatos.obtenerDatos(json, Idiomas.class);
+        Optional<Idioma> idiomas = datos.idiomas().stream().filter(i->i.codigo().toLowerCase().contains(codigo.toLowerCase())).findFirst();
+        var idioma = idiomas.map(Idioma::idioma).get();
+        return idioma;
+    }
+
     private void listarLibros(){
         List<Libros> libros = repositorio.findAll();
         System.out.println("------------ LIBROS EN BASE DE DATOS ----------");
         for (Libros libro : libros) {
             System.out.println("Título : " + libro.getTitle());
             System.out.println("Autor : " + libro.getAuthors().getName());
-            System.out.println("Lenguaje : " + libro.getLanguages());
+            System.out.println("Lenguaje : " + llamarIdioma(libro.getLanguages()));
             System.out.println("Descargas : " + libro.getDownload_count());
             System.out.println("--------------------");
         }
@@ -170,18 +187,70 @@ public class Principal {
     private void librosPorIdioma(){
         System.out.println("Ingrese un lenguaje ejemplo: en, es, fr : ");
         String langua = teclado.nextLine();
+
+        var idioma = llamarIdioma(langua);
+
         List<Libros> librosPorLenguaje = repositorio.findByLanguages(langua.toLowerCase());
         if (librosPorLenguaje.isEmpty()){
-            System.out.println("No se encontraron libros en el idioma "+langua);
+            System.out.println("No se encontraron libros en el idioma ");
         }else{
-            System.out.println("------------ LIBROS EN BASE DE DATOS ----------");
+            System.out.println("------------ LIBROS EN BASE DE DATOS EN "+idioma.toUpperCase()+" ----------");
             for (Libros libro : librosPorLenguaje){
                 System.out.println("Título : " + libro.getTitle());
                 System.out.println("Autor : " + libro.getAuthors().getName());
-                System.out.println("Lenguaje : " + libro.getLanguages());
+                System.out.println("Lenguaje : " + idioma);
                 System.out.println("Descargas : " + libro.getDownload_count());
                 System.out.println("--------------------");
             }
         }
     }
+    private void topDiezMasDescargados(){
+        List<Libros> topLibros = repositorio.findAllByOrderByDownloadcountDesc();
+        System.out.println("------------ TOP 10 LIBROS CON MAS DESCARGAS ----------");
+        var topCinco = topLibros.stream().limit(10).collect(Collectors.toList());
+        for (Libros libro : topCinco) {
+            System.out.println("Título : " + libro.getTitle());
+            System.out.println("Autor : " + libro.getAuthors().getName());
+            System.out.println("Lenguaje : " + llamarIdioma(libro.getLanguages()));
+            System.out.println("Descargas : " + libro.getDownload_count());
+            System.out.println("--------------------");
+        }
+    }
+    private void topDiezMenosDescargados(){
+        List<Libros> topLibros = repositorio.findAllByOrderByDownloadcountAsc();
+        System.out.println("------------ TOP 10 LIBROS CON MENOS DESCARGAS ----------");
+        var topDiez = topLibros.stream().limit(10).collect(Collectors.toList());
+        for (Libros libro : topDiez) {
+            System.out.println("Título : " + libro.getTitle());
+            System.out.println("Autor : " + libro.getAuthors().getName());
+            System.out.println("Lenguaje : " + llamarIdioma(libro.getLanguages()));
+            System.out.println("Descargas : " + libro.getDownload_count());
+            System.out.println("--------------------");
+        }
+    }
+    private void topDiezAutoresConMasAnios(){
+        List<Autores> autores = autoresRepositorio.findAllByOrderByAgeDesc();
+        var topAutores = autores.stream().limit(10).collect(Collectors.toList());
+        System.out.println("------------ AUTORES CON MAS AÑOS ----------");
+        for (Autores autor : topAutores){
+            System.out.println("Nombre : " + autor.getName());
+            System.out.println("Nacimiento : " +autor.getBirth_year());
+            System.out.println("Fallecimiento : " +autor.getDeath_year());
+            System.out.println("Vivio : " +autor.getAge()+ " años");
+            System.out.println("--------------------");
+        }
+    }
+    private void topDiezAutoresConMenosAnios(){
+        List<Autores> autores = autoresRepositorio.findAllByOrderByAgeAsc();
+        var topAutores = autores.stream().limit(10).collect(Collectors.toList());
+        System.out.println("------------ AUTORES CON MENOS AÑOS ----------");
+        for (Autores autor : topAutores){
+            System.out.println("Nombre : " + autor.getName());
+            System.out.println("Nacimiento : " +autor.getBirth_year());
+            System.out.println("Fallecimiento : " +autor.getDeath_year());
+            System.out.println("Vivio : " +autor.getAge()+ " años");
+            System.out.println("--------------------");
+        }
+    }
+
 }

@@ -20,7 +20,8 @@ public class Libros {
     private Autores authors;
 
     private String languages;
-    private int download_count;
+    @Column(name = "download_count")
+    private int downloadcount;
 
 
     public Libros(BookModel bookModel){
@@ -28,7 +29,7 @@ public class Libros {
         this.title = bookModel.title();
         //this.authors = bookModel.authors();
         this.languages = bookModel.languages().get(0);
-        this.download_count = bookModel.download_count();
+        this.downloadcount = bookModel.download_count();
     }
 
     public Libros(){
@@ -68,10 +69,10 @@ public class Libros {
     }
 
     public int getDownload_count() {
-        return download_count;
+        return downloadcount;
     }
 
     public void setDownload_count(int download_count) {
-        this.download_count = download_count;
+        this.downloadcount = download_count;
     }
 }
