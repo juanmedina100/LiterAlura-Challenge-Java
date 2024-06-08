@@ -29,27 +29,28 @@ Crear un archivo en src/main/resources/ llamada : env.properties y agrega las si
 
 ## Menú
 
-#### A continuación el menú de la aplicaión en el cual se muestran los campos requeridos y los campos adicionales.
+A continuación el menú de la aplicaión en el cual se muestran los campos requeridos y los campos adicionales.
 
 ![](assets/img01.jpg)
-#### LiterAlura Challenge solicitado nos solicita 6 funcionalidades en la aplicación que son las que estan marcadas con color azul + la opción 0 que es para cerrar la aplicación.
-#### En este proyecto se han agregado 4 opción más con el fin de demostrar los conocimientos adquirido en clases de Alura.
+LiterAlura Challenge solicitado nos solicita 6 funcionalidades en la aplicación que son las que estan marcadas con color azul + la opción 0 que es para cerrar la aplicación.
+
+En este proyecto se han agregado 4 opción más con el fin de demostrar los conocimientos adquirido en clases de Alura.
 
 ## ¿Como funciona esta aplicación?
 
 ### General:
-#### Una vez configurada la aplicación correr la aplicación (dando clic en Run) lo cual nos cargara el menu principal
+Una vez configurada la aplicación correr la aplicación (dando clic en Run) lo cual nos cargara el menu principal
 
 ![](assets/img02.jpg)
 
-#### Nos solicitara que elijamos una opción de 1 al 9 o la opción 0 para salir.
+Nos solicitara que elijamos una opción de 1 al 9 o la opción 0 para salir.
 
-#### Al presionar el numero 1 nos pedira el titulo del libro 
+Al presionar el numero 1 nos pedira el titulo del libro 
 
 ![](assets/img03.jpg)
 
 ### 1 - Buscar libro por titulo
-#### Esta opción buscara en la API de [Gutendex](https://gutendex.com/) para mostrarlo en panatalla y simultaneamente lo guardara en la base de datos previamente creada.
+Esta opción buscara en la API de [Gutendex](https://gutendex.com/) para mostrarlo en panatalla y simultaneamente lo guardara en la base de datos previamente creada.
 
 ![](assets/img04.jpg)
 
@@ -65,7 +66,7 @@ Crear un archivo en src/main/resources/ llamada : env.properties y agrega las si
 
 
 ### 2 - Listar libros registrados
-#### Esta opción buscara en nuestra base de datos los autores que posteriormente fueron descargados en la opción 1
+Esta opción buscara en nuestra base de datos los autores que posteriormente fueron descargados en la opción 1
 
 
 #### - Respuesta obtenida
@@ -73,7 +74,7 @@ Crear un archivo en src/main/resources/ llamada : env.properties y agrega las si
 ![](assets/img07.jpg)
 
 ### 3 - Listar autores registrados
-#### Esta opción buscara en nuestra base de datos los libros que posteriormente fueron descargados en la opción 1, agregando un campo adicional y calculado a la consulta y ese campo es los años que vivio esa persona según la información de la API.
+Esta opción buscara en nuestra base de datos los libros que posteriormente fueron descargados en la opción 1, agregando un campo adicional y calculado a la consulta y ese campo es los años que vivio esa persona según la información de la API.
 
 #### - Respuesta obtenida
 
@@ -81,8 +82,9 @@ Crear un archivo en src/main/resources/ llamada : env.properties y agrega las si
 
 
 ### 4 - Listar autores vivos en determinado año
-#### Esta opción buscara en nuestra base de datos los autores que posteriormente fueron descargados en la opción 1 y se encuentran vivos en el año proporcionado.
-#### Al seleccionar la opción 4 nos pedira el año que deseamos consultar.
+Esta opción buscara en nuestra base de datos los autores que posteriormente fueron descargados en la opción 1 y se encuentran vivos en el año proporcionado.
+
+Al seleccionar la opción 4 nos pedira el año que deseamos consultar.
 
 
 #### - Aca ingresamos el año
@@ -95,7 +97,7 @@ Crear un archivo en src/main/resources/ llamada : env.properties y agrega las si
 
 
 ### 5 - Listar libros por idioma
-#### Esta opción buscara en nuestra base de datos los libros por idioma, es necesario colocar el cógigo del idioma segun el iso-639-1 que es de solo 2 letras, ejemplo es = Español, en = Ingles, bn = Bengalí, etc. 
+Esta opción buscara en nuestra base de datos los libros por idioma, es necesario colocar el cógigo del idioma segun el iso-639-1 que es de solo 2 letras, ejemplo es = Español, en = Ingles, bn = Bengalí, etc. 
 
 #### Aca debes escribir el código del idioma
 
