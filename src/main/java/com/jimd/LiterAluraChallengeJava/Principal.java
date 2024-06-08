@@ -116,12 +116,13 @@ public class Principal {
                     newAutor.setLibros(libros);
                     autoresRepositorio.save(newAutor);
                 }
-                libroBuscado.stream().flatMap(l->l.authors().stream().map(a->
+                var libro =  libroBuscado.stream().flatMap(l->l.authors().stream().map(a->
                                 """
                                 <---------- LIBRO ENCONTRADO ---------> 
                                 Titulo : """ +l.title()+ """ 
                                 \nAutor : """ + a.name()+ """
-                                        \nDescargas : """ + l.download_count())).forEach(System.out::println);
+                                        \nDescargas : """ + l.download_count())).findFirst();
+                libro.stream().forEach(System.out::println);
             }else{
                 System.out.println("El libro no fue encontrado.");
             }

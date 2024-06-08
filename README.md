@@ -50,13 +50,82 @@ Crear un archivo en src/main/resources/ llamada : env.properties y agrega las si
 
 ### 1 - Buscar libro por titulo
 #### Esta opción buscara en la API de [Gutendex](https://gutendex.com/) para mostrarlo en panatalla y simultaneamente lo guardara en la base de datos previamente creada.
+
+![](assets/img04.jpg)
+
 #### En esta opción hay dos tipos de respuesta 
 
 #### - Libro encontrado
 
-
+![](assets/img05.jpg)
 
 #### - libro no encontrado
 
+![](assets/img06.jpg)
 
 
+### 2 - Listar libros registrados
+#### Esta opción buscara en nuestra base de datos los autores que posteriormente fueron descargados en la opción 1
+
+
+#### - Respuesta obtenida
+
+![](assets/img07.jpg)
+
+### 3 - Listar autores registrados
+#### Esta opción buscara en nuestra base de datos los libros que posteriormente fueron descargados en la opción 1, agregando un campo adicional y calculado a la consulta y ese campo es los años que vivio esa persona según la información de la API.
+
+#### - Respuesta obtenida
+
+![](assets/img08.jpg)
+
+
+### 4 - Listar autores vivos en determinado año
+#### Esta opción buscara en nuestra base de datos los autores que posteriormente fueron descargados en la opción 1 y se encuentran vivos en el año proporcionado.
+#### Al seleccionar la opción 4 nos pedira el año que deseamos consultar.
+
+
+#### - Aca ingresamos el año
+
+![](assets/img09.jpg)
+
+#### - Respuesta obtenida
+
+![](assets/img10.jpg)
+
+
+### 5 - Listar libros por idioma
+#### Esta opción buscara en nuestra base de datos los libros por idioma, es necesario colocar el cógigo del idioma segun el iso-639-1 que es de solo 2 letras, ejemplo es = Español, en = Ingles, bn = Bengalí, etc. 
+
+#### Aca debes escribir el código del idioma
+
+![](assets/img11.jpg)
+
+#### Los códigos y sus idiomas los puedes encontrar en el siguiente [enlace de idiomas](https://juanmedina100.github.io/idiomas-iso-639-1-json/idiomas-639-1.json).
+
+
+#### - Respuesta obtenida
+
+![](assets/img12.jpg)
+
+## Opción adicionales a lo solicitado en el Cchallenge
+
+### 6 - Top 10 libros con mas descargas
+#### - Respuesta obtenida
+![](assets/img13.jpg)
+
+### 7 - Top 10 libros con menos descargas
+#### - Respuesta obtenida
+![](assets/img14.jpg)
+
+### 8 - Top 10 Autores con mas años
+#### - Respuesta obtenida
+![](assets/img15.jpg)
+
+### 9 - Top 10 Autores con menos años
+#### - Respuesta obtenida
+![](assets/img16.jpg)
+
+## Insignia 
+
+![](assets/badgeliteralura.png)
